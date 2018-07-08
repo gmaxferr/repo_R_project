@@ -1,0 +1,86 @@
+Sexo,Idade,Nacionalidade,Registo_Site,Pesquisa_por_nome,Adicionar_carrinho_compras_1,Pesquisar_por_autor,Selecionar_livro_autor,Adicionar_livro_favoritos,Aceder_favoritos,Adicionar_carrinho_compras_2,Remover_livro_carrinho,Iniciar_compra,Motivos
+Masculino,18 - 25,Portugal,4,5,5,5,4,5,5,4,3,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar
+Masculino,18 - 25,Portugal,5,4,5,5,4,5,5,4,5,5,O registo no site é muito demorado
+Masculino,26 - 35,Portugal,4,4,5,3,4,4,5,4,5,4,Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Mais de 45,Portugal,3,4,3,4,4,4,3,4,4,4,As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,3,3,3,3,3,3,3,3,3,3,Não gosto do estilo gráfico do website;O botão de adicionar ao carrinho é difícil de encontrar;O acesso ao menu dos favoritos não está explícito
+Masculino,Menos de 18,Portugal,3,4,3,4,4,3,3,3,4,5,O botão de adicionar ao carrinho é difícil de encontrar;O registo no site é muito demorado
+Feminino,26 - 35,Portugal,5,5,5,5,5,5,4,4,5,5,O acesso ao menu dos favoritos não está explícito
+Feminino,Mais de 45,Portugal,2,2,3,2,2,3,1,1,2,3,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,5,5,5,5,5,5,4,4,5,5,Não gosto do estilo gráfico do website;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;O registo no site é muito demorado
+Masculino,26 - 35,Portugal,3,3,4,4,4,4,4,4,4,3,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,Mais de 45,Portugal,2,3,4,2,2,3,3,3,3,3,As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,26 - 35,Portugal,3,4,4,3,3,4,3,4,4,3,O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,Menos de 18,Portugal,3,3,3,3,2,3,2,2,3,2,O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Menos de 18,Portugal,4,4,4,3,3,4,4,4,4,4,Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,4,4,4,4,4,4,4,4,4,4,
+Masculino,18 - 25,Portugal,3,3,4,3,3,4,4,4,4,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,3,5,4,3,3,4,3,4,5,5,O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,36 - 45,Portugal,3,3,4,2,2,4,3,4,4,3,Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,4,4,4,4,4,5,4,5,5,4,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,36 - 45,Portugal,2,4,5,3,3,4,4,5,5,4,O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,4,5,5,5,5,5,5,5,5,5,O registo no site é muito demorado
+Masculino,18 - 25,Portugal,3,4,5,4,3,5,4,4,5,4,Não gosto do estilo gráfico do website;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,3,3,3,3,3,4,3,4,4,4,Barra de pesquisa difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O registo no site é muito demorado
+Masculino,Mais de 45,Portugal,3,2,2,2,2,2,2,2,2,2,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,Mais de 45,Portugal,2,3,3,2,3,3,3,3,2,2,O botão de adicionar ao carrinho é difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Mais de 45,Portugal,3,4,4,4,4,5,5,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,Menos de 18,Portugal,5,3,4,3,4,5,4,5,5,4,O registo no site é muito demorado
+Masculino,18 - 25,Portugal,5,5,5,4,5,5,5,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,36 - 45,Portugal,3,2,4,2,3,3,2,2,3,1,Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,26 - 35,Portugal,4,4,5,3,3,5,4,5,5,5,Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,36 - 45,Portugal,4,3,3,3,2,3,2,2,3,2,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O acesso ao menu dos favoritos não está explícito
+Masculino,18 - 25,Portugal,5,5,5,5,4,5,5,5,5,5,
+Masculino,26 - 35,Portugal,4,4,5,4,4,5,5,5,5,5,Não gosto do estilo gráfico do website;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,18 - 25,Portugal,4,4,5,5,4,5,4,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Mais de 45,Portugal,3,2,2,1,2,2,2,2,3,3,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,26 - 35,Portugal,3,4,5,3,3,4,3,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Menos de 18,Portugal,5,5,5,4,4,5,4,5,5,5,Livro não adicionado corretamente ao carrinho;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,5,4,5,4,5,5,5,5,5,5,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar
+Feminino,36 - 45,Portugal,4,3,4,4,3,4,4,5,5,4,Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,4,3,5,4,3,5,4,4,5,5,Barra de pesquisa difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,36 - 45,Portugal,4,3,5,3,3,5,4,4,5,4,Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,Mais de 45,Portugal,2,2,3,2,1,2,2,3,3,1,Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Mais de 45,Portugal,2,3,4,2,2,4,3,4,4,4,Barra de pesquisa difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Mais de 45,Portugal,2,3,4,3,2,4,3,5,5,4,Não gosto do estilo gráfico do website;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,26 - 35,Portugal,3,4,4,3,3,4,4,4,4,4,Não gosto do estilo gráfico do website;O registo no site é muito demorado
+Feminino,26 - 35,Portugal,4,4,5,4,3,5,4,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,36 - 45,Portugal,4,4,5,3,3,4,4,5,5,4,Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,18 - 25,Portugal,3,3,4,3,3,4,4,4,4,4,Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Menos de 18,Portugal,4,3,4,3,2,4,4,5,5,4,Não gosto do estilo gráfico do website;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,3,5,5,4,3,4,4,5,4,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Mais de 45,Portugal,4,3,3,3,2,3,3,4,3,3,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,36 - 45,Portugal,4,4,3,4,3,4,4,5,5,4,O botão de adicionar ao carrinho é difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,26 - 35,Portugal,4,4,3,3,2,4,4,4,4,4,Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;O botão de adicionar ao carrinho é difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,18 - 25,Portugal,4,3,5,2,2,5,5,5,5,4,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,26 - 35,Portugal,5,4,3,5,3,5,5,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,Menos de 18,Portugal,3,3,3,3,2,3,3,3,3,3,Não gosto do estilo gráfico do website;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,4,5,5,4,3,5,5,5,5,5,Não gosto do estilo gráfico do website;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,18 - 25,Portugal,4,3,4,3,3,5,4,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Mais de 45,Portugal,3,3,3,3,2,2,2,4,4,3,Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito
+Masculino,Mais de 45,Portugal,3,4,4,3,2,4,3,5,5,4,O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,36 - 45,Portugal,1,3,3,2,2,4,4,4,5,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,36 - 45,Portugal,3,5,4,3,3,4,4,5,5,5,Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,26 - 35,Portugal,3,4,5,4,4,5,5,5,5,5,O registo no site é muito demorado
+Feminino,26 - 35,Portugal,2,3,4,2,2,4,4,4,4,3,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;O registo no site é muito demorado
+Masculino,Menos de 18,Portugal,4,4,3,2,2,4,3,4,4,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,3,4,3,3,2,4,4,4,4,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,4,5,5,4,4,5,5,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,18 - 25,Portugal,4,5,5,4,3,5,5,5,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,26 - 35,Portugal,2,4,3,3,2,4,4,5,5,4,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,Menos de 18,Portugal,3,4,2,4,3,4,5,4,3,3,Não gosto do estilo gráfico do website;Livro não adicionado corretamente ao carrinho;O botão de adicionar ao carrinho é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,Mais de 45,Portugal,3,5,5,5,4,3,3,4,4,5,Não gosto do estilo gráfico do website;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,36 - 45,Portugal,4,4,5,3,3,5,4,5,5,4,Livro não adicionado corretamente ao carrinho;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,26 - 35,Portugal,4,5,4,4,4,4,4,4,5,5,As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,18 - 25,Portugal,2,4,4,2,1,3,3,4,4,4,Não gosto do estilo gráfico do website;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Menos de 18,Portugal,3,3,4,4,3,4,4,4,4,3,Não gosto do estilo gráfico do website
+Feminino,36 - 45,Portugal,3,4,4,4,4,4,4,4,4,4,Não gosto do estilo gráfico do website;O botão de adicionar ao carrinho é difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Masculino,18 - 25,Portugal,3,4,4,4,3,4,4,5,5,4,Barra de pesquisa difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O registo no site é muito demorado
+Masculino,Mais de 45,Portugal,3,3,3,3,2,4,3,4,4,4,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,26 - 35,Portugal,3,5,5,4,4,5,4,5,4,4,Barra de pesquisa difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado
+Feminino,Mais de 45,Portugal,3,4,4,3,3,3,3,3,4,3,Barra de pesquisa difícil de encontrar;O botão de adicionar ao carrinho é difícil de encontrar;O botão de adicionar aos favoritos é difícil de encontrar;O acesso ao menu dos favoritos não está explícito;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,18 - 25,Portugal,3,5,5,5,4,5,5,5,5,5,O registo no site é muito demorado
+Feminino,18 - 25,Portugal,5,4,5,4,4,5,5,5,5,5,Barra de pesquisa difícil de encontrar
+Masculino,Mais de 45,Portugal,3,4,3,3,3,4,3,4,4,4,Não gosto do estilo gráfico do website;As pesquisas que fiz não obtiveram os resultados que pretendia
+Feminino,18 - 25,Portugal,3,4,4,3,3,5,4,5,5,5,Não gosto do estilo gráfico do website;Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia
+Masculino,36 - 45,Portugal,3,4,5,4,3,5,4,5,5,4,Barra de pesquisa difícil de encontrar;As pesquisas que fiz não obtiveram os resultados que pretendia;O registo no site é muito demorado

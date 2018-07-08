@@ -62,7 +62,7 @@ joinDateTime <- function(date,time){
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 # ========================================================================================================================
-# ====                                  MAIN USABILITY SCRIPT                                                         ====
+# ====                                  MAIN FIABILITY SCRIPT                                                         ====
 # ========================================================================================================================
 
 # Esta package permite processamento paralelo de operacoes,
@@ -317,144 +317,121 @@ while(cont <= nrow(dados_17_fev)){
 
 
 # Alínea b)
-# - - - - - - 
-
-
-
-# =====
-# Só Janeiro
-startDate = joinDateTime("2017-01-01", "00:00:00")
-endDate = joinDateTime("2017-01-31","23:59:00")
-index = c()
-cont = 1
-while(cont <= nrow(all_vsrv8)){
-  
-  ini = toDate(all_vsrv8[[cont,4]])
-  if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
-    index = c(index, cont)
+# - - - - - -
+print("===============")
+print("   ALINEA B    ")
+print("===============")
+# ===================================================================================================
+fiabilidades=c()
+fiabilidades2=c()
+for (i in 1:2){
+  if (i==1) {
+    print("Calculo para Janeiro...")
+    periodo = 31*24*60
+    startDate = joinDateTime("2017-01-01", "00:00:00")
+    endDate = joinDateTime("2017-01-31","23:59:00")
+    index = c()
+    cont = 1
+    while(cont <= nrow(all_vsrv8)){
+      
+      ini = toDate(all_vsrv8[[cont,4]])
+      if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
+        index = c(index, cont)
+      }
+      
+      cont = cont +1
+    }
+    dataServer = all_vsrv8[index,]
+  } else {
+    print("Calculo para Fevereiro...")
+    periodo = 28*24*60
+    startDate = joinDateTime("2017-02-01", "00:00:00")
+    endDate = joinDateTime("2017-02-28","23:59:00")
+    index = c()
+    cont = 1
+    while(cont <= nrow(all_vsrv8)){
+      
+      ini = toDate(all_vsrv8[[cont,4]])
+      if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
+        index = c(index, cont)
+      }
+      
+      cont = cont +1
+    }
+    
+    # Fazemos depois a filtragem consoante os indices encontrados que tem o valores
+    # que pretendemos.
+    dataServer = all_vsrv8[index,]
   }
-  
-  cont = cont +1
+  if(i==1){
+   
+    #Numero de sessões
+    nAcessos_1 = as.numeric(nrow(dataServer))
+    
+    deltaT_1 = periodo/nAcessos_1
+    
+    #Numero de sessões que não são falhas
+    dataServerUpCount_1 = as.numeric(nrow(dataServer[dataServer$Duracao>1,]))
+    tempoOperacao_1 = dataServerUpCount_1*deltaT_1
+    
+    #Numero de sessões que são falhas
+    dataServerDownCount_1 = as.numeric(nrow(dataServer[dataServer$Duracao<=1,]))
+    
+    taxaMediaFalhas_1 = dataServerDownCount_1/tempoOperacao_1
+    for(x in 1:120){
+      fiabilidade = exp(1)^(-taxaMediaFalhas_1*x)
+      fiabilidade=fiabilidade*100
+      fiabilidades=c(fiabilidades,fiabilidade)
+    }
+    
+  } else if(i==2){
+    #Numero de sessões
+    nAcessos_2 = as.numeric(nrow(dataServer))
+    
+    deltaT_2 = periodo/nAcessos_2
+    
+    #Numero de sessões que não são falhas
+    dataServerUpCount_2 = as.numeric(nrow(dataServer[dataServer$Duracao>1,]))
+    tempoOperacao_2 = dataServerUpCount_2*deltaT_2
+    
+    #Numero de sessões que são falhas
+    dataServerDownCount_2 = as.numeric(nrow(dataServer[dataServer$Duracao<=1,]))
+    
+    taxaMediaFalhas_2 = dataServerDownCount_2/tempoOperacao_2
+    for(x in 1:120){
+      fiabilidade = exp(1)^(-taxaMediaFalhas_2*x)
+      fiabilidade=fiabilidade*100
+      fiabilidades2=c(fiabilidades2,fiabilidade)
+    }
+  }
 }
 
-# Fazemos depois a filtragem consoante os indices encontrados que tem o valores
-# que pretendemos.
-vsrv8_jan = all_vsrv8[index,]
-
-# Calculo do tempo de operacao e numero de falhas
-
-n_falhas = nrow(vsrv8_jan[vsrv8_jan[5] == 0,]) + nrow(vsrv8_jan[vsrv8_jan[5] == 1,])
-tempo_total = subtractDate(tail(vsrv8_jan, 1)$Data_Ini, head(vsrv8_jan, 1)$Data_Ini)
-
-func_jan = n_falhas / tempo_total
-# func_total = 0.01367925
-# funcao de fiabilidade R(t) = e^(-0.014*t)
-
-# Para o total do mês
-
-x=1:tempo_total
-plot(1:tempo_total,exp(-1 * func_jan * x)*100,type="l",col="blue", xlim = c(0,tempo_total), ylim = c(0,100), xlab="Minuto", ylab="Fiabilidade (%)")
-legend(tempo_total/1.4,100,legend=c("Janeiro"), col=c("blue"),
-       lty=c(1,2,3), ncol=1)
-
-
-
-
-
-
-
-
-
-# =====
-# Só Fevereiro
-startDate = joinDateTime("2017-02-01", "00:00:00")
-endDate = joinDateTime("2017-02-28","23:59:00")
-index = c()
-cont = 1
-while(cont <= nrow(all_vsrv8)){
-  
-  ini = toDate(all_vsrv8[[cont,4]])
-  if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
-    index = c(index, cont)
-  }
-  
-  cont = cont +1
-}
-
-# Fazemos depois a filtragem consoante os indices encontrados que tem o valores
-# que pretendemos.
-vsrv8_fev = all_vsrv8[index,]
-
-# Calculo do tempo de operacao e numero de falhas
-
-n_falhas = nrow(vsrv8_fev[vsrv8_fev[5] == 0,]) + nrow(vsrv8_fev[vsrv8_fev[5] == 1,])
-tempo_total = subtractDate(tail(vsrv8_fev, 1)$Data_Ini, head(vsrv8_fev, 1)$Data_Ini)
-
-func_fev = n_falhas / tempo_total
-# func_fev = 0.00199494
-# funcao de fiabilidade R(t) = e^(-0.002*t)
-
-x=1:tempo_total
-plot(1:tempo_total,exp(-1 * func_fev * x)*100,type="l",col="red", xlim = c(0,tempo_total), ylim = c(0,100), xlab="Minuto", ylab="Fiabilidade (%)")
-legend(tempo_total/1.4,100,legend=c("Fevereiro"), col=c("red"),
-       lty=c(1,2,3), ncol=1)
-
-
-
-
-
-
-
-
-# -----------
-# Total
-
-# Inicio de Janeiro e Fim de Fevereira: utilizadas para limitar os valores
-startDate = joinDateTime("2017-01-01", "00:00:00")
-endDate = joinDateTime("2017-02-28","23:59:00")
-index = c()
-cont = 1
-while(cont <= nrow(all_vsrv8)){
-  
-  ini = toDate(all_vsrv8[[cont,4]])
-  if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
-    index = c(index, cont)
-  }
-  
-  cont = cont +1
-}
-
-# Fazemos depois a filtragem consoante os indices encontrados que tem o valores
-# que pretendemos.
-vsrv8_total = all_vsrv8[index,]
-
-# Calculo do tempo de operacao e numero de falhas
-
-n_falhas = nrow(vsrv8_total[vsrv8_total[5] == 0,]) + nrow(vsrv8_total[vsrv8_total[5] == 1,])
-tempo_total = subtractDate(tail(vsrv8_total, 1)$Data_Ini, head(vsrv8_total, 1)$Data_Ini)
-
-func_total = n_falhas / tempo_total
-# func_total = 0.008127882
-# funcao de fiabilidade R(t) = e^(-0.008*t)
+tempo_total = periodo
+# Taxa media de falhas Janeiro: 
+taxaMediaFalhas_1 # = 0.016
+# R(t) = e ^ -0.0160t
+# Taxa media de falhas Fevereiro: 
+taxaMediaFalhas_2 # = 0.0026
+# R(t) = e ^ -0.0026t
 
 # Total dos dois meses:
 
 x=1:tempo_total
 x2=1:tempo_total
-plot(1:tempo_total,exp(-1 * func_fev * x)*100,type="l",col="red", xlim = c(0,tempo_total), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
-lines(x2,exp(-1 * func_jan * x2)*100,col="blue")
+plot(1:tempo_total,exp(-1 * taxaMediaFalhas_2 * x)*100,type="l",col="red", xlim = c(0,tempo_total), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
+lines(x2,exp(-1 * taxaMediaFalhas_1 * x2)*100,col="blue")
 legend(tempo_total/1.4,100,legend=c("Janeiro","Fevereiro"), col=c("blue","red"),
        lty=c(1,2,3), ncol=1)
-
+title(main="Função de fiabilidade para o servidor vsrv8 (2 Meses)")
 # Primeiras duas horas:
 
-x=0:tempo_total
-x2=0:tempo_total
-plot(x,exp(-1 * func_fev * x)*100,type="l",col="red", xlim = c(0,120), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
-lines(x2,exp(-1 * func_jan * x2)*100,col="blue")
-legend(tempo_total/1.4,100,legend=c("Janeiro","Fevereiro"), col=c("blue","red"),
+x=0:120
+x2=0:120
+plot(fiabilidades2,type="l",col="red", xlim = c(0,120), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
+lines(fiabilidades,col="blue")
+legend(120/1.4,100,legend=c("Janeiro","Fevereiro"), col=c("blue","red"),
        lty=c(1,2,3), ncol=1)
-
+title(main="Função de fiabilidade para o servidor vsrv8 (2 Horas)")
 
 
 # Alínea c)
