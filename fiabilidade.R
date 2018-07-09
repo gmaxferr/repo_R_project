@@ -93,7 +93,7 @@ if(!file.exists("./Resources/vpn_sessions_2.csv")){
     
     cont = cont +1
   }
-
+  
   vpn_sessions = data.frame(Servidor=servidores,Protocolo=protocolos, Data_Ini = datas_ini, Data_Fim = hora_fim, Duracao=duracoes )
   
   write.csv(vpn_sessions, "./Resources/vpn_sessions_2.csv")
@@ -113,7 +113,7 @@ if(!file.exists("./Resources/vpn_sessions_2.csv")){
 # ===== ALGUNS INDICADORES =====
 
 
-  # Duracao das sessoes por servidores:
+# Duracao das sessoes por servidores:
 all_vsrv8 = subset(vpn_sessions, Servidor=="vsrv8")
 all_vsrv10 = subset(vpn_sessions, Servidor=="vsrv10")
 all_vsrv11 = subset(vpn_sessions, Servidor=="vsrv11")
@@ -127,7 +127,7 @@ boxplot(all_vsrv8$Duracao[all_vsrv8$Duracao < 400],
         all_vsrv17$Duracao[all_vsrv17$Duracao < 400],
         names = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"))
 
-  # Duracao das sessoes por protocolo:
+# Duracao das sessoes por protocolo:
 
 all_pptp = subset(vpn_sessions, Protocolo=="PPTP")
 all_sstp = subset(vpn_sessions, Protocolo=="SSTP")
@@ -144,7 +144,7 @@ boxplot(all_pptp$Duracao[all_pptp$Duracao < 400],
 
 
 
-  # Tempo (medio) entre falhas por servidor:
+# Tempo (medio) entre falhas por servidor:
 
 FAILURE = c(0, 1)
 # VSRV8
@@ -310,7 +310,7 @@ datas = c("2017-01-01 23:59:00", "2017-01-02 23:59:00", "2017-01-03 23:59:00", "
 while(cont <= nrow(dados_17_fev)){
   
   if(subtractDate(datas[[dia]],dados_17_fev[1,cont]))
-  disp = dados_17_fev[]
+    disp = dados_17_fev[]
   
   cont = cont + 1
 }
@@ -364,7 +364,7 @@ for (i in 1:2){
     dataServer = all_vsrv8[index,]
   }
   if(i==1){
-   
+    
     #Numero de sessões
     nAcessos_1 = as.numeric(nrow(dataServer))
     
