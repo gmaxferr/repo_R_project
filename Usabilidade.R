@@ -281,5 +281,178 @@ title(main="Motivos de dificuldade")
 # =====
 # BOXPLOT para cada pergunta com as pontuacoes!
 
+registo = mean(inquerito$Registo_Site)
+pesquisa_por_nome = mean(inquerito$Pesquisa_por_nome)
+adicionar_carrinho_1 = mean(inquerito$Adicionar_carrinho_compras_1)
+pesquisa_por_autor = mean(inquerito$Pesquisar_por_autor)
+selecionar_livro_autor = mean(inquerito$Selecionar_livro_autor)
+adicionar_favoritos = mean(inquerito$Adicionar_livro_favoritos)
+aceder_favoritos = mean(inquerito$Aceder_favoritos)
+adicionar_carrinho_2 =mean(inquerito$Adicionar_carrinho_compras_2)
+remover_livro_carrinho = mean(inquerito$Remover_livro_carrinho)
+iniciar_compra = mean(inquerito$Iniciar_compra)
 
+tarefas = c(registo,
+            pesquisa_por_nome,
+            adicionar_carrinho_1,
+            pesquisa_por_autor,
+            selecionar_livro_autor,
+            adicionar_favoritos,
+            aceder_favoritos,
+            adicionar_carrinho_2,
+            remover_livro_carrinho,
+            iniciar_compra)
+# Geral medias de pontuacoes (barplot)
+barplot(tarefas,
+        names = 1:10,
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Médias de Pontuações por Tarefa")
+# Overall (boxplot)
+boxplot(tarefas, col = c("#DAF7A6", "#ecf7a6", "#FFC300"),
+        ylim=c(1,5))
+title(main = "Boxplot do Overall das pontuações dadas")
+
+
+registo = inquerito$Registo_Site
+pesquisa_por_nome = inquerito$Pesquisa_por_nome
+adicionar_carrinho_1 = inquerito$Adicionar_carrinho_compras_1
+pesquisa_por_autor = inquerito$Pesquisar_por_autor
+selecionar_livro_autor = inquerito$Selecionar_livro_autor
+adicionar_favoritos = inquerito$Adicionar_livro_favoritos
+aceder_favoritos = inquerito$Aceder_favoritos
+adicionar_carrinho_2 =inquerito$Adicionar_carrinho_compras_2
+remover_livro_carrinho = inquerito$Remover_livro_carrinho
+iniciar_compra = inquerito$Iniciar_compra
+
+
+tarefas = c(registo,
+            pesquisa_por_nome,
+            adicionar_carrinho_1,
+            pesquisa_por_autor,
+            selecionar_livro_autor,
+            adicionar_favoritos,
+            aceder_favoritos,
+            adicionar_carrinho_2,
+            remover_livro_carrinho,
+            iniciar_compra)
+
+mean(tarefas)
+sd(tarefas)
+median(tarefas)
+# mean = 3.814
+# sd = 0.970
+# median = 4
+
+cont = 0
+medias = c()
+medianas = c()
+desvios_padrao = c()
+while(cont < 10){
+  min = cont*n_total
+  max = min+n_total
+  this = tarefas[min:max]
+  
+  medias = c(medias, round(mean(this),3))
+  desvios_padrao = c(desvios_padrao, round(sd(this),3))
+  medianas = c(medianas, round(median(this),3))
+  cont = cont + 1 
+}
+
+medias
+desvios_padrao
+medianas
+
+#
+# Segundo os dados nos vetores acima impressos, temos,
+# para cada tarefa onde:
+#
+# 1  - Registo na Wook
+# 2  - Pesquisar um livro por nome
+# 3  - Adicionar livro pesquisado ao carrinho de compras
+# 4  - Pesquisar livro por autor
+# 5  - Selecionar livro pretendido do autor
+# 6  - Adicionar livro selecionado aos favoritos
+# 7  - Aceder a pagina dos favoritos
+# 8  - Adicionar livro dos favoritos ao carrinho de compras
+# 9  - Remover um livro do carrinho de compras
+# 10 - Iniciar processo de compra do livro
+#
+# Obtemos os seguintes valores:
+#
+# +===============+
+# |    TAREFAS    |
+# +===============+
+#
+# +---------------+
+# |       1       |
+# +---------------+
+#     mean: 3.411
+#       sd: 0.890
+#   median: 3
+#
+# +---------------+
+# |       2       |
+# +---------------+
+#     mean: 3.767
+#       sd: 0.835
+#   median: 4
+#
+# +---------------+
+# |       3       |
+# +---------------+
+#     mean: 4.058
+#       sd: 0.872
+#   median: 4
+#
+# +---------------+
+# |       4       |
+# +---------------+
+#     mean: 3.406
+#       sd: 0.937
+#   median: 3
+#
+# +---------------+
+# |       5       |
+# +---------------+
+#     mean: 3.081
+#       sd: 0.923
+#   median: 3
+#
+# +---------------+
+# |       6       |
+# +---------------+
+#     mean: 4.116
+#       sd: 0.846
+#   median: 4
+#
+# +---------------+
+# |       7       |
+# +---------------+
+#     mean: 3.779
+#       sd: 0.925
+#   median: 4
+#
+# +---------------+
+# |       8       |
+# +---------------+
+#     mean: 4.197
+#       sd: 0.905
+#   median: 4
+#
+# +---------------+
+# |       9       |
+# +---------------+
+#     mean: 4.337
+#       sd: 0.834
+#   median: 5
+#
+# +---------------+
+# |       10      |
+# +---------------+
+#     mean: 4.023
+#       sd: 0.957
+#   median: 4
+#
+# +===============+
 

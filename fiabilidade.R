@@ -636,7 +636,7 @@ while(cont <= nrow(resulting_failure_data_vsrv10)){
 
 # Voltando ao teste as medias das taxas de falha dos dois servidores:
 
-t.test(taxa_falhas_vsrv17, taxa_falhas_vsrv10, paired = F, conf.level = 0.95)
+t.test(taxa_falhas_vsrv17, mtbf_vsrv10_dez, paired = F, conf.level = 0.95)
 
 
 # Alínea e)
