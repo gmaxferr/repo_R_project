@@ -21,9 +21,30 @@ subtractDate <- function (date1, date2){
   #return(as.numeric(difftime(date1,date2)) * 60)
   date1 = toDate(toString(date1))
   date2 = toDate(toString(date2))
-  diff= date1 - date2
   
-  return(as.numeric(diff*60))
+  year_1 = as.numeric(getYear(date1))
+  month_1 = as.numeric(getMonth(date1))
+  day_1 = as.numeric(getDay(date1))
+  hour_1 = as.numeric(getHour(date1))
+  if(is.na(hour_1)){ hour_1 = 0}
+  minuts_1 = as.numeric(getMinuts(date1))
+  if(is.na(minuts_1)){ minuts_1 = 0}
+  
+  year_2 = as.numeric(getYear(date2))
+  month_2 = as.numeric(getMonth(date2))
+  day_2 = as.numeric(getDay(date2))
+  hour_2 = as.numeric(getHour(date2))
+  if(is.na(hour_2)){ hour_2 = 0}
+  minuts_2 = as.numeric(getMinuts(date2))
+  if(is.na(minuts_2)){ minuts_2 = 0}
+  diff_anos = year_1 - year_2
+  diff_meses = month_1 - month_2
+  diff_dias = day_1 - day_2
+  diff_horas = hour_1 - hour_2
+  diff_minutos = minuts_1 - minuts_2
+  
+  return((diff_anos * 365*24*60) + (diff_meses *30*24*60) + (diff_dias*24*60) + (diff_horas * 60) + diff_minutos)
+
 }
 
 incrementDate <- function (date, minut){
@@ -158,7 +179,7 @@ while(cont <= nrow(resulting_failure_data_vsrv8)){
   before = resulting_failure_data_vsrv8[[cont-1, 3]]
   after = resulting_failure_data_vsrv8[[cont, 3]]
   time_between_failures_vsrv8 = c(time_between_failures_vsrv8,
-                                  subtractDate(after, before))
+                                  abs(subtractDate(before, after)))
   cont = cont + 1
 }
 MTBF_vsrv8 = mean(time_between_failures_vsrv8)
@@ -175,7 +196,7 @@ while(cont <= nrow(resulting_failure_data_vsrv10)){
   before = resulting_failure_data_vsrv10[[cont-1, 3]]
   after = resulting_failure_data_vsrv10[[cont, 3]]
   time_between_failures_vsrv10 = c(time_between_failures_vsrv10,
-                                   subtractDate(after, before))
+                                   abs(subtractDate(before, after)))
   cont = cont + 1
 }
 MTBF_vsrv10 = mean(time_between_failures_vsrv10)
@@ -191,7 +212,7 @@ while(cont <= nrow(resulting_failure_data_vsrv11)){
   before = resulting_failure_data_vsrv11[[cont-1, 3]]
   after = resulting_failure_data_vsrv11[[cont, 3]]
   time_between_failures_vsrv11 = c(time_between_failures_vsrv11,
-                                   subtractDate(after, before))
+                                   abs(subtractDate(before, after)))
   cont = cont + 1
 }
 MTBF_vsrv11 = mean(time_between_failures_vsrv11)
@@ -208,7 +229,7 @@ while(cont <= nrow(resulting_failure_data_vsrv16)){
   before = resulting_failure_data_vsrv16[[cont-1, 3]]
   after = resulting_failure_data_vsrv16[[cont, 3]]
   time_between_failures_vsrv16 = c(time_between_failures_vsrv16,
-                                   subtractDate(after, before))
+                                   abs(subtractDate(before, after)))
   cont = cont + 1
 }
 MTBF_vsrv16 = mean(time_between_failures_vsrv16)
@@ -225,7 +246,7 @@ while(cont <= nrow(resulting_failure_data_vsrv17)){
   before = resulting_failure_data_vsrv17[[cont-1, 3]]
   after = resulting_failure_data_vsrv17[[cont, 3]]
   time_between_failures_vsrv17 = c(time_between_failures_vsrv17,
-                                   subtractDate(after, before))
+                                   abs(subtractDate(before, after)))
   cont = cont + 1
 }
 MTBF_vsrv17 = mean(time_between_failures_vsrv17)
@@ -233,7 +254,7 @@ MTBF_vsrv17 = mean(time_between_failures_vsrv17)
 # graficamente... (barplot)
 MTBFs=c(MTBF_vsrv8, MTBF_vsrv10,MTBF_vsrv11, MTBF_vsrv16 ,MTBF_vsrv17)
 max(MTBFs)
-barplot(MTBFs, names.arg = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"), main = "MTBF por servidor", ylim = c(0,700))
+barplot(MTBFs, names.arg = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"), main = "MTBF por servidor", ylim = c(0,500))
 
 
 # ==============================
@@ -270,7 +291,6 @@ vsrv10 = all_vsrv10[index,]
 
 
 
-
 # VSVR16 - Marco 2017
 
 startDate = joinDateTime("2017-03-01", "00:00:00")
@@ -288,7 +308,7 @@ vsrv16 = all_vsrv16[index,]
 
 # VSVR17 - 28 Fevereiro 2017
 
-startDate = joinDateTime("2017-02-28", "00:00:00")
+startDate = joinDateTime("2017-02-01", "00:00:00")
 endDate = joinDateTime("2017-02-28","23:59:00")
 index = c()
 cont = 1
@@ -306,7 +326,8 @@ dados_17_fev = vsrv17[c(3,5)] # duracao e data
 cont = 1
 disponibilidades = c()
 dia = 1
-datas = c("2017-01-01 23:59:00", "2017-01-02 23:59:00", "2017-01-03 23:59:00", "2017-01-04 23:59:00", "2017-01-05 23:59:00", "2017-01-06 23:59:00", "2017-01-07 23:59:00", "2017-01-08 23:59:00", "2017-01-09 23:59:00", "2017-01-10 23:59:00", "2017-01-11 23:59:00", "2017-01-12 23:59:00", "2017-01-13 23:59:00", "2017-01-14 23:59:00", "2017-01-15 23:59:00", "2017-01-16 23:59:00", "2017-01-17 23:59:00", "2017-01-18 23:59:00", "2017-01-19 23:59:00", "2017-01-20 23:59:00", "2017-01-21 23:59:00", "2017-01-22 23:59:00", "2017-01-23 23:59:00", "2017-01-24 23:59:00", "2017-01-25 23:59:00", "2017-01-26 23:59:00", "2017-01-27 23:59:00", "2017-01-28 23:59:00")
+datas = c("2017-02-01 23:59:00", "2017-02-02 23:59:00", "2017-02-03 23:59:00", "2017-02-04 23:59:00", "2017-02-05 23:59:00", "2017-02-06 23:59:00", "2017-02-07 23:59:00", "2017-02-08 23:59:00", "2017-02-09 23:59:00", "2017-02-10 23:59:00", "2017-02-11 23:59:00", "2017-02-12 23:59:00", "2017-02-13 23:59:00", "2017-02-14 23:59:00", "2017-02-15 23:59:00", "2017-02-16 23:59:00", "2017-02-17 23:59:00", "2017-02-18 23:59:00", "2017-02-19 23:59:00", "2017-02-20 23:59:00", "2017-02-21 23:59:00", "2017-02-22 23:59:00", "2017-02-23 23:59:00", "2017-02-24 23:59:00", "2017-02-25 23:59:00", "2017-02-26 23:59:00", "2017-02-27 23:59:00", "2017-02-28 23:59:00")
+tempo_atividade = subtractDate(toDate(tail(datas, 1)),toDate("2017-02-01 00:00:00"))
 while(cont <= nrow(dados_17_fev)){
   
   if(subtractDate(datas[[dia]],dados_17_fev[1,cont]))
@@ -351,7 +372,7 @@ for (i in 1:2){
     cont = 1
     while(cont <= nrow(all_vsrv8)){
       
-      ini = toDate(all_vsrv8[[cont,4]])
+      ini = toDate(all_vsrv8[[cont,3]])
       if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
         index = c(index, cont)
       }
@@ -491,7 +512,7 @@ while(cont <= nrow(resulting_failure_data_vsrv16)){
   cont = cont + 1
 }
 
-# grafico taca de falhas por dia
+# grafico taxa de falhas por dia
 barplot(taxa_falhas_vsrv16, ylim=c(0, 0.025), ylab ="Taxa de Falha", xlab="Dia", names.arg = 1:31)
 
 # teste a media:
@@ -534,7 +555,7 @@ vsrv17_dez = all_vsrv17[index,]
 cont = 1
 index = c()
 while(cont <= nrow(all_vsrv10)){
-  ini = toDate(all_vsrv10[[cont,3]])
+  ini = all_vsrv10[[cont,3]]
   if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
     index = c(index, cont)
   }
@@ -637,6 +658,9 @@ while(cont <= nrow(resulting_failure_data_vsrv10)){
 # Voltando ao teste as medias das taxas de falha dos dois servidores:
 
 t.test(taxa_falhas_vsrv17, mtbf_vsrv10_dez, paired = F, conf.level = 0.95)
+# p-value = 0.00041 -> logo rejeitamos H0. E possivel afirmar, desta forma,
+# que ha evidencia estatistica que nos permite concluir que com um nivel de 
+# significancia de 5%, que a taa media de falhas e inferior a 0.01
 
 
 # Alínea e)
