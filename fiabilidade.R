@@ -4,12 +4,40 @@
 # ========================
 
 # install.packages('lubridate')
+# install.packages('reshape2')
+# install.packages('car')
 library(lubridate)
+library(reshape2)
+library(car)
+
+getYear <- function(date){
+  #[YYYY]-MM-DD HH:MM:SS
+  return(substring(toString(date), 1, 4))
+}
+getMonth <- function(date){
+  #YYYY-[MM]-DD HH:MM:SS
+  return(substring(toString(date), 6, 7))
+}
+getDay <- function(date){
+  #YYYY-MM-[DD] HH:MM:SS
+  return(substring(toString(date), 9, 10))
+}
+getHour <- function(date){
+  #YYYY-MM-DD [HH]:MM:SS
+  return(substring(toString(date), 12, 13))
+}
+getMinuts <- function(date){
+  #YYYY-MM-DD HH:[MM]:SS
+  return(substring(toString(date), 15, 16))
+}
+
 
 toDate <- function(date){
   
-  if(length(toString(date)) <= 10 && length(toString(date)) > 8){
-    result = paste(toString(date), "00:00:00", sep = " ")
+  if(length(toString(date)) <= 15 && length(toString(date)) > 8){
+    aux = paste(getYear(date),getMonth(date), sep="-")
+    aux2 = paste(aux, getDay(date), sep="-")
+    result = paste(toString(aux1), "00:00:00", sep = " ")
     return(as.POSIXct(result))
   }
   
@@ -44,34 +72,13 @@ subtractDate <- function (date1, date2){
   diff_minutos = minuts_1 - minuts_2
   
   return((diff_anos * 365*24*60) + (diff_meses *30*24*60) + (diff_dias*24*60) + (diff_horas * 60) + diff_minutos)
-
+  
 }
 
 incrementDate <- function (date, minut){
   # Adiciona 'minuts' minutos a 'date'
   result = toDate(toString(date)) + minutes(minut)
   return(result)
-}
-
-getYear <- function(date){
-  #[YYYY]-MM-DD HH:MM:SS
-  return(substring(toString(date), 1, 4))
-}
-getMonth <- function(date){
-  #YYYY-[MM]-DD HH:MM:SS
-  return(substring(toString(date), 6, 7))
-}
-getDay <- function(date){
-  #YYYY-MM-[DD] HH:MM:SS
-  return(substring(toString(date), 9, 10))
-}
-getHour <- function(date){
-  #YYYY-MM-DD [HH]:MM:SS
-  return(substring(toString(date), 12, 13))
-}
-getMinuts <- function(date){
-  #YYYY-MM-DD HH:[MM]:SS
-  return(substring(toString(date), 15, 16))
 }
 
 joinDateTime <- function(date,time){
@@ -141,13 +148,14 @@ all_vsrv11 = subset(vpn_sessions, Servidor=="vsrv11")
 all_vsrv16 = subset(vpn_sessions, Servidor=="vsrv16")
 all_vsrv17 = subset(vpn_sessions, Servidor=="vsrv17")
 
-boxplot(all_vsrv8$Duracao[all_vsrv8$Duracao < 400],
-        all_vsrv10$Duracao[all_vsrv10$Duracao < 400],
-        all_vsrv11$Duracao[all_vsrv11$Duracao < 400],
-        all_vsrv16$Duracao[all_vsrv16$Duracao < 400],
-        all_vsrv17$Duracao[all_vsrv17$Duracao < 400],
+val = 700
+boxplot(all_vsrv8$Duracao[all_vsrv8$Duracao < val],
+        all_vsrv10$Duracao[all_vsrv10$Duracao < val],
+        all_vsrv11$Duracao[all_vsrv11$Duracao < val],
+        all_vsrv16$Duracao[all_vsrv16$Duracao < val],
+        all_vsrv17$Duracao[all_vsrv17$Duracao < val],
         names = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"))
-
+title(main="Duracao das sessoes por servidor")
 # Duracao das sessoes por protocolo:
 
 all_pptp = subset(vpn_sessions, Protocolo=="PPTP")
@@ -162,7 +170,7 @@ boxplot(all_pptp$Duracao[all_pptp$Duracao < 400],
         all_openvpn_l2$Duracao[all_openvpn_l2$Duracao < 400],
         all_openvpn_l3$Duracao[all_openvpn_l3$Duracao < 400],
         names = c("PPTP", "SSTP", "SOFTETHER", "OPENVPN_L2", "OPENVPN_L3"))
-
+title(main="Duracao das sessoes por protocolo")
 
 
 # Tempo (medio) entre falhas por servidor:
@@ -254,12 +262,10 @@ MTBF_vsrv17 = mean(time_between_failures_vsrv17)
 # graficamente... (barplot)
 MTBFs=c(MTBF_vsrv8, MTBF_vsrv10,MTBF_vsrv11, MTBF_vsrv16 ,MTBF_vsrv17)
 max(MTBFs)
-barplot(MTBFs, names.arg = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"), main = "MTBF por servidor", ylim = c(0,500))
+barplot(MTBFs, names.arg = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"), ylim = c(0,500))
+title(main="Tempo medio entre falhas")
 
-
-# ==============================
-
-
+#//////////////////////////////////////////////////////////////////////////////////////////////
 
 # Alínea a)
 # - - - - - - 
@@ -289,6 +295,9 @@ while(cont <= nrow(all_vsrv10)){
 }
 vsrv10 = all_vsrv10[index,]
 
+n_DOWN_vsrv10 = nrow(vsrv10[vsrv10$Duracao %in% 0:1,])
+n_UP_vsrv10 = nrow(vsrv10[!vsrv10$Duracao %in% 0:1,])
+disponiblidade_vsrv10 = (n_UP_vsrv10 / (n_DOWN_vsrv10 + n_UP_vsrv10) )* 100
 
 
 # VSVR16 - Marco 2017
@@ -306,6 +315,10 @@ while(cont <= nrow(all_vsrv16)){
 }
 vsrv16 = all_vsrv16[index,]
 
+n_DOWN_vsrv16 = nrow(vsrv16[vsrv16$Duracao %in% 0:1,])
+n_UP_vsrv16 = nrow(vsrv16[!vsrv16$Duracao %in% 0:1,])
+disponiblidade_vsrv16 = (n_UP_vsrv16 / (n_DOWN_vsrv16 + n_UP_vsrv16) )* 100
+
 # VSVR17 - 28 Fevereiro 2017
 
 startDate = joinDateTime("2017-02-01", "00:00:00")
@@ -313,29 +326,96 @@ endDate = joinDateTime("2017-02-28","23:59:00")
 index = c()
 cont = 1
 while(cont <= nrow(all_vsrv17)){
-  ini = toDate(all_vsrv17[[cont,4]])
+  ini = toDate(all_vsrv17[[cont,3]])
   if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
     index = c(index, cont)
   }
   cont = cont + 1
 }
 vsrv17 = all_vsrv17[index,]
-dados_17_fev = vsrv17[c(3,5)] # duracao e data
+vsrv17 = vsrv17[-(1:10),]
+vsrv17 = vsrv17[-c(1,3),]
+dados_17_fev = vsrv17[c(3,5)] 
 
-# calculo disponibilidade
 cont = 1
-disponibilidades = c()
-dia = 1
-datas = c("2017-02-01 23:59:00", "2017-02-02 23:59:00", "2017-02-03 23:59:00", "2017-02-04 23:59:00", "2017-02-05 23:59:00", "2017-02-06 23:59:00", "2017-02-07 23:59:00", "2017-02-08 23:59:00", "2017-02-09 23:59:00", "2017-02-10 23:59:00", "2017-02-11 23:59:00", "2017-02-12 23:59:00", "2017-02-13 23:59:00", "2017-02-14 23:59:00", "2017-02-15 23:59:00", "2017-02-16 23:59:00", "2017-02-17 23:59:00", "2017-02-18 23:59:00", "2017-02-19 23:59:00", "2017-02-20 23:59:00", "2017-02-21 23:59:00", "2017-02-22 23:59:00", "2017-02-23 23:59:00", "2017-02-24 23:59:00", "2017-02-25 23:59:00", "2017-02-26 23:59:00", "2017-02-27 23:59:00", "2017-02-28 23:59:00")
-tempo_atividade = subtractDate(toDate(tail(datas, 1)),toDate("2017-02-01 00:00:00"))
-while(cont <= nrow(dados_17_fev)){
-  
-  if(subtractDate(datas[[dia]],dados_17_fev[1,cont]))
-    disp = dados_17_fev[]
-  
+nextDay = 1
+U = 0
+D = 0
+day = 1
+days = c()
+while(cont %in% 1:28){
+  if(as.numeric(day) < 10){
+    day = paste("0", toString(day), sep="")
+  }
+  startDate = joinDateTime(paste("2017-02-", day, sep =""), "00:00:00")
+  endDate = joinDateTime(paste("2017-02-", day, sep =""), "23:59:01")
+
+  print(paste(startDate, endDate, sep=" ---> "))
+  if(is.na(startDate)){
+    print("StartDate is NA. Cont is:")
+    print(cont)
+    
+  }
+  index = c()
+  p = 1
+  while(p <= nrow(vsrv17)){
+    ini = toDate(vsrv17[[p,3]])
+    if(subtractDate(startDate, ini) <= 0 && subtractDate(endDate, ini) >= 0){
+      index = c(index, p)
+    }
+    p = p + 1
+  }
+  aux = vsrv17[index,]
+  day = as.numeric(day) +1
+  D = nrow(aux[aux$Duracao %in% 0:1,])
+  U = nrow(aux[!aux$Duracao %in% 0:1,])
+  disponiblidade_aux = (U / (D + U) )* 100
+  days = c(days, disponiblidade_aux)
   cont = cont + 1
 }
 
+barplot(days, names.arg = 1:28, xlab="Dia", ylab = "Disponibilidade (%)")
+title("Disponibilidade Fevereiro VSRV17")
+
+
+n_DOWN_vsrv17 = nrow(vsrv17[vsrv17$Duracao %in% 0:1,])
+n_UP_vsrv17 = nrow(vsrv17[!vsrv17$Duracao %in% 0:1,])
+disponiblidade_vsrv17 = (n_UP_vsrv17 / (n_DOWN_vsrv17 + n_UP_vsrv17) )* 100
+
+
+# disponibilidade total:
+# disp = UP / (UP + DOWN)
+n_DOWN_vsrv10 = nrow(all_vsrv10[all_vsrv10$Duracao %in% 0:1,])
+n_UP_vsrv10 = nrow(all_vsrv10[!all_vsrv10$Duracao %in% 0:1,])
+disponiblidade_vsrv10 = (n_UP_vsrv10 / (n_DOWN_vsrv10 + n_UP_vsrv10) )* 100
+
+n_DOWN_vsrv8 = nrow(all_vsrv8[all_vsrv8$Duracao %in% 0:1,])
+n_UP_vsrv8 = nrow(all_vsrv8[!all_vsrv8$Duracao %in% 0:1,])
+disponiblidade_vsrv8 = (n_UP_vsrv8 / (n_DOWN_vsrv8 + n_UP_vsrv8) )* 100
+
+n_DOWN_vsrv16 = nrow(all_vsrv16[all_vsrv16$Duracao %in% 0:1,])
+n_UP_vsrv16 = nrow(all_vsrv16[!all_vsrv16$Duracao %in% 0:1,])
+disponiblidade_vsrv16 = (n_UP_vsrv16 / (n_DOWN_vsrv16 + n_UP_vsrv16) )* 100
+
+n_DOWN_vsrv17 = nrow(all_vsrv17[all_vsrv17$Duracao %in% 0:1,])
+n_UP_vsrv17 = nrow(all_vsrv17[!all_vsrv17$Duracao %in% 0:1,])
+disponiblidade_vsrv17 = (n_UP_vsrv17 / (n_DOWN_vsrv17 + n_UP_vsrv17) )* 100
+
+n_DOWN_vsrv11 = nrow(all_vsrv11[all_vsrv11$Duracao %in% 0:1,])
+n_UP_vsrv11 = nrow(all_vsrv11[!all_vsrv11$Duracao %in% 0:1,])
+disponiblidade_vsrv11 = (n_UP_vsrv11 / (n_DOWN_vsrv11 + n_UP_vsrv11) )* 100
+
+disponibilidades_all = c(disponiblidade_vsrv8, disponiblidade_vsrv10, disponiblidade_vsrv11, disponiblidade_vsrv16, disponiblidade_vsrv17)
+
+barplot(disponibilidades_all, names.arg = c("vsrv8", "vsrv10", "vsrv11", "vsrv16", "vsrv17"), ylim=c(0,100), ylab = "Disponibilidade (%)", xlab ="Servidor")
+title(main = "Disponibilidades do tempo total em todos os servidores")
+
+# -----
+
+
+
+
+#//////////////////////////////////////////////////////////////////////////////////////////////
 
 # Alínea b)
 # - - - - - -
@@ -439,7 +519,7 @@ taxaMediaFalhas_2 # = 0.0026
 
 x=1:tempo_total
 x2=1:tempo_total
-plot(1:tempo_total,exp(-1 * taxaMediaFalhas_2 * x)*100,type="l",col="red", xlim = c(0,tempo_total), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
+plot(1:tempo_total,exp(-1 * taxaMediaFalhas_2 * x)*100,type="l",col="red", xlim = c(0,tempo_total), ylim = c(0,100), xlab = "t (min)", ylab = "Fiabilidade")
 lines(x2,exp(-1 * taxaMediaFalhas_1 * x2)*100,col="blue")
 legend(tempo_total/1.4,100,legend=c("Janeiro","Fevereiro"), col=c("blue","red"),
        lty=c(1,2,3), ncol=1)
@@ -448,12 +528,13 @@ title(main="Função de fiabilidade para o servidor vsrv8 (2 Meses)")
 
 x=0:120
 x2=0:120
-plot(fiabilidades2,type="l",col="red", xlim = c(0,120), ylim = c(0,100), xlab = "t (min)", ylab = "Disponibilidade")
+plot(fiabilidades2,type="l",col="red", xlim = c(0,120), ylim = c(0,100), xlab = "t (min)", ylab = "Fiabilidade")
 lines(fiabilidades,col="blue")
 legend(120/1.4,100,legend=c("Janeiro","Fevereiro"), col=c("blue","red"),
        lty=c(1,2,3), ncol=1)
 title(main="Função de fiabilidade para o servidor vsrv8 (2 Horas)")
 
+#//////////////////////////////////////////////////////////////////////////////////////////////
 
 # Alínea c)
 # - - - - - - 
@@ -527,7 +608,7 @@ t.test(taxa_falhas_vsrv16, alternative = "less", conf.level = 0.95, mu = 0.01)
 # com um nivel de significancia de 5%, que a taxa media de falhas e
 # inferior a 0.01
 
-# Alínea d)
+# Alínea c) Versao 2)
 # - - - - - - 
 
 # Teste as medias da taxa de falhas dos dois servidores vsrv10 e vsrv17
@@ -635,7 +716,7 @@ while(cont <= nrow(resulting_failure_data_vsrv10)){
     n_falhas = n_falhas + 1
   }else{
     if(duracao == 0 || n_falhas == 0){
-      mtbf_vsrv10_dez = c(mtbf_vsrv10_dez, -1)
+      mtbf_vsrv10_dez = c(mtbf_vsrv10_dez, 0)
     }else {
       mtbf_now = duracao / n_falhas
       mtbf_vsrv10_dez = c(mtbf_vsrv10_dez, mtbf_now)
@@ -658,22 +739,100 @@ while(cont <= nrow(resulting_failure_data_vsrv10)){
 # Voltando ao teste as medias das taxas de falha dos dois servidores:
 
 t.test(taxa_falhas_vsrv17, mtbf_vsrv10_dez, paired = F, conf.level = 0.95)
-# p-value = 0.00041 -> logo rejeitamos H0. E possivel afirmar, desta forma,
+# p-value = 0.00039 -> logo rejeitamos H0. E possivel afirmar, desta forma,
 # que ha evidencia estatistica que nos permite concluir que com um nivel de 
 # significancia de 5%, que a taa media de falhas e inferior a 0.01
 
 
-# Alínea e)
+
+#//////////////////////////////////////////////////////////////////////////////////////////////
+#
+# Alínea d)
 # - - - - - - 
+#
+# Teste à igualdade dos tempos medios entre falhas dos
+# servicos vsrv10 e vsvr17:
+#
+# H0: tempos_medios_vsrv10 == tempos_medios_vsrv17
+# H1: tempos_medios_vsrv10 != tempos_medios_vsrv17
+#
+#
+# Factos:
+# As amostras sao independentes.
+# TLC -> Amostras Grandes -> Distribuicao dos dados e Normal
+#
+# Mas variancias iguais?
+# Para verificar -> teste de Levene (dados os dois factos anteriores)
+#
+# H0: As variancias sao iguais
+# H1: As variancias sao diferentes
+#
+
+list_mtbf = c()
+mtbf_2017 <- data.frame(
+  Server=character(), 
+  tbf=numeric(), stringsAsFactors = FALSE)
+nCol = 1
+dados_srv_10 = vsrv10[vsrv10$Duracao <= 1,]
+tbf=c()
+if (nrow(dados_srv_10)>1){
+  for (j in 2:nrow(dados_srv_10)){
+    diff_mins = subtractDate(dados_srv_10[j,3],dados_srv_10[j-1,3])
+    tbf=c(tbf,diff_mins)
+  }
+  
+}
+
+if(length(tbf) == 0){
+  print(paste("vsrv10", NA))
+  mtbf_2017  =rbind(mtbf_2017,c("vsrv10",as.numeric(NA)))
+}else{
+  mediaTempoFalhas = mean(tbf)
+  print(paste("vsrv10", mediaTempoFalhas))
+  frame.aux = data.frame("vsrv10",tbf)
+  colnames(frame.aux)=colnames(mtbf_2017)
+  mtbf_2017= rbind(mtbf_2017, frame.aux)
+}
 
 
+dados_srv_17 = vsrv17[vsrv17$Duracao <= 1,]
+tbf=c()
+if (nrow(dados_srv_17)>1){
+  for (k in 2:nrow(dados_srv_17)){
+    diff_mins = subtractDate(dados_srv_17[k,3],dados_srv_17[k-1,3])
+    tbf=c(tbf,diff_mins)
+  }
+  
+}
 
+if(length(tbf) == 0){
+  print(paste("vsrv17", NA))
+  mtbf_2017 =rbind(mtbf_2017,c("vsrv17",as.numeric(NA)))
+}else{
+  mediaTempoFalhas = mean(tbf)
+  print(paste("vsrv17", mediaTempoFalhas))
+  frame.aux = data.frame("vsrv17",tbf)
+  colnames(frame.aux)=colnames(mtbf_2017)
+  mtbf_2017= rbind(mtbf_2017, frame.aux)
+}
 
-# Alínea f)
-# - - - - - - 
+colnames(mtbf_2017) = c("Server","tbf")
+attach(mtbf_2017)
 
+# Teste de Hipóteses - diferença entre a media de falhas para os dois servidores no mes 12/2017
+# H0: u1 = u2 
+# H1: u1!= U2
+# Teste unilateral
 
+# Teste de levene para as variancias iguais
+mtbf_2017$tbf = as.numeric(mtbf_2017$tbf)
+library(car)
+leveneTest(tbf~Server, mtbf_2017, center=median)
 
+vsrv10Vec = mtbf_2017[Server=="vsrv10","tbf"]
+vsrv17Vec = mtbf_2017[Server=="vsrv17","tbf"]
+
+t.test(vsrv17Vec,vsrv10Vec, alternative = "two.sided", var.equal=FALSE, conf.level = 0.95)
 
 
 

@@ -58,13 +58,14 @@ pie(c(perc_masc, perc_fem),
     c(paste(s_MASCULINO, label_perc_masc),
       paste(s_FEMININO, label_perc_fem)),
     col = c("#DAF7A6", "#900C3F"))
-
+title(main = "Sexo dos Inquiridos")
 
 # Nacionalidade:
 
 perc_pt = (length(inquerito[inquerito$Nacionalidade=="Portugal",NACIONALIDADE]) / n_total) * 100
 label_perc_pt = paste("(", "%)", sep=toString(perc_pt))
-pie(perc_pt, col = "blue", c(paste("Portugal", label_perc_pt)))
+pie(perc_pt, col = "#DAF7A6", c(paste("Portugal", label_perc_pt)))
+title(main = "Nacionalidade dos Inquiridos")
 
 
 # Idade:
@@ -79,6 +80,7 @@ n_mais45= length(inquerito[inquerito$Idade == i_MAIS_45, IDADE])
 barplot(c(n_menos18, n_18_25, n_26_35, n_36_45, n_mais45),
         names.arg = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
         col = c("#DAF7A6", "#FFC300", "#FF5733", "#C70039", "#900C3F"))
+title(main = "Idade dos Inquiridos")
 
 
 # 1. Registo no Site:
@@ -213,6 +215,7 @@ barplot(c(pontuacoes_registo,
                       " ", " ", "10", " ", " "),
         legend.text = c(1:5)
 )
+title(main = "Quantidade de votos por tarefa")
 
 
 
@@ -266,7 +269,7 @@ total = sum(motivos_qtd)
 percs = c()
 i = 1
 labels = c()
-while( i < length(motivos_qtd)){
+while( i <= length(motivos_qtd)){
   perc = round(motivos_qtd[i]/total, 2)
   start = paste(toString(i), "(")
   labels = c(labels, paste(start, "%)", sep=toString(perc)))
@@ -456,3 +459,308 @@ medianas
 #
 # +===============+
 
+i = which(inquerito$Idade == i_MENOR_18)
+dados_men_18 = inquerito[i,]
+i = which(inquerito$Idade == i_18_25)
+dados_18_25 = inquerito[i,]
+i = which(inquerito$Idade == i_26_35)
+dados_26_35 = inquerito[i,]
+i = which(inquerito$Idade == i_36_45)
+dados_36_45 = inquerito[i,]
+i = which(inquerito$Idade == i_MAIS_45)
+dados_45_mais = inquerito[i,]
+
+# Menores de 18
+
+p_m_18_registo = (dados_men_18$Registo_Site)
+p_m_18_pesq_nome = (dados_men_18$Pesquisa_por_nome)
+p_m_18_add_carr_1 = (dados_men_18$Adicionar_carrinho_compras_1)
+p_m_18_pesq_autor = (dados_men_18$Pesquisar_por_autor)
+p_m_18_sel_livro = (dados_men_18$Selecionar_livro_autor)
+p_m_18_add_fav = (dados_men_18$Adicionar_livro_favoritos)
+p_m_18_acc_fav = (dados_men_18$Aceder_favoritos)
+p_m_18_add_carr_2 = (dados_men_18$Adicionar_carrinho_compras_2)
+p_m_18_rm_carr = (dados_men_18$Remover_livro_carrinho)
+p_m_18_ini_cp = (dados_men_18$Iniciar_compra)
+
+p_m_18_tarefas = c(p_m_18_registo,
+            p_m_18_pesq_nome,
+            p_m_18_add_carr_1,
+            p_m_18_pesq_autor,
+            p_m_18_sel_livro,
+            p_m_18_add_fav,
+            p_m_18_acc_fav,
+            p_m_18_add_carr_2,
+            p_m_18_rm_carr,
+            p_m_18_ini_cp)
+
+p_m_18_media_total = mean(p_m_18_tarefas)
+
+
+# 18 a 25
+
+p_18_25_registo = (dados_18_25$Registo_Site)
+p_18_25_pesq_nome = (dados_18_25$Pesquisa_por_nome)
+p_18_25_add_carr_1 = (dados_18_25$Adicionar_carrinho_compras_1)
+p_18_25_pesq_autor = (dados_18_25$Pesquisar_por_autor)
+p_18_25_sel_livro = (dados_18_25$Selecionar_livro_autor)
+p_18_25_add_fav = (dados_18_25$Adicionar_livro_favoritos)
+p_18_25_acc_fav = (dados_18_25$Aceder_favoritos)
+p_18_25_add_carr_2 = (dados_18_25$Adicionar_carrinho_compras_2)
+p_18_25_rm_carr = (dados_18_25$Remover_livro_carrinho)
+p_18_25_ini_cp = (dados_18_25$Iniciar_compra)
+
+p_18_25_tarefas = c(p_18_25_registo,
+                    p_18_25_pesq_nome,
+                    p_18_25_add_carr_1,
+                    p_18_25_pesq_autor,
+                    p_18_25_sel_livro,
+                    p_18_25_add_fav,
+                    p_18_25_acc_fav,
+                    p_18_25_add_carr_2,
+                    p_18_25_rm_carr,
+                    p_18_25_ini_cp)
+
+p_18_25_media_total = mean(p_18_25_tarefas)
+
+
+
+# 26 a 35
+
+p_26_35_registo = (dados_26_35$Registo_Site)
+p_26_35_pesq_nome = (dados_26_35$Pesquisa_por_nome)
+p_26_35_add_carr_1 = (dados_26_35$Adicionar_carrinho_compras_1)
+p_26_35_pesq_autor = (dados_26_35$Pesquisar_por_autor)
+p_26_35_sel_livro = (dados_26_35$Selecionar_livro_autor)
+p_26_35_add_fav = (dados_26_35$Adicionar_livro_favoritos)
+p_26_35_acc_fav = (dados_26_35$Aceder_favoritos)
+p_26_35_add_carr_2 = (dados_26_35$Adicionar_carrinho_compras_2)
+p_26_35_rm_carr = (dados_26_35$Remover_livro_carrinho)
+p_26_35_ini_cp = (dados_26_35$Iniciar_compra)
+
+p_26_35_tarefas = c(p_26_35_registo,
+                    p_26_35_pesq_nome,
+                    p_26_35_add_carr_1,
+                    p_26_35_pesq_autor,
+                    p_26_35_sel_livro,
+                    p_26_35_add_fav,
+                    p_26_35_acc_fav,
+                    p_26_35_add_carr_2,
+                    p_26_35_rm_carr,
+                    p_26_35_ini_cp)
+
+p_26_35_media_total = mean(p_26_35_tarefas)
+
+
+
+# 36 a 45
+
+p_36_45_registo = dados_36_45$Registo_Site
+p_36_45_pesq_nome = dados_36_45$Pesquisa_por_nome
+p_36_45_add_carr_1 = dados_36_45$Adicionar_carrinho_compras_1
+p_36_45_pesq_autor = dados_36_45$Pesquisar_por_autor
+p_36_45_sel_livro = dados_36_45$Selecionar_livro_autor
+p_36_45_add_fav = dados_36_45$Adicionar_livro_favoritos
+p_36_45_acc_fav = dados_36_45$Aceder_favoritos
+p_36_45_add_carr_2 = dados_36_45$Adicionar_carrinho_compras_2
+p_36_45_rm_carr = dados_36_45$Remover_livro_carrinho
+p_36_45_ini_cp = dados_36_45$Iniciar_compra
+
+p_36_45_tarefas = c(p_36_45_registo,
+                    p_36_45_pesq_nome,
+                    p_36_45_add_carr_1,
+                    p_36_45_pesq_autor,
+                    p_36_45_sel_livro,
+                    p_36_45_add_fav,
+                    p_36_45_acc_fav,
+                    p_36_45_add_carr_2,
+                    p_36_45_rm_carr,
+                    p_36_45_ini_cp)
+
+p_36_45_media_total = mean(p_36_45_tarefas)
+
+
+
+# Mais de 45
+
+p_45_mais_registo = dados_45_mais$Registo_Site
+p_45_mais_pesq_nome = dados_45_mais$Pesquisa_por_nome
+p_45_mais_add_carr_1 = dados_45_mais$Adicionar_carrinho_compras_1
+p_45_mais_pesq_autor = dados_45_mais$Pesquisar_por_autor
+p_45_mais_sel_livro = dados_45_mais$Selecionar_livro_autor
+p_45_mais_add_fav = dados_45_mais$Adicionar_livro_favoritos
+p_45_mais_acc_fav = dados_45_mais$Aceder_favoritos
+p_45_mais_add_carr_2 = dados_45_mais$Adicionar_carrinho_compras_2
+p_45_mais_rm_carr = dados_45_mais$Remover_livro_carrinho
+p_45_mais_ini_cp = dados_45_mais$Iniciar_compra
+
+p_45_mais_tarefas = c(p_45_mais_registo,
+                      p_45_mais_pesq_nome,
+                      p_45_mais_add_carr_1,
+                      p_45_mais_pesq_autor,
+                      p_45_mais_sel_livro,
+                      p_45_mais_add_fav,
+                      p_45_mais_acc_fav,
+                      p_45_mais_add_carr_2,
+                      p_45_mais_rm_carr,
+                      p_45_mais_ini_cp)
+
+p_45_mais_media_total = mean(p_45_mais_tarefas)
+
+media_pontuacoes_por_idades = c(mean(p_m_18_media_total),
+                                mean(p_18_25_media_total),
+                                mean(p_26_35_media_total),
+                                mean(p_36_45_media_total),
+                                mean(p_45_mais_media_total))
+
+# Por tarefa:
+
+reg = c(mean(p_m_18_registo),
+        mean(p_18_25_registo),
+        mean(p_26_35_registo),
+        mean(p_36_45_registo),
+        mean(p_45_mais_registo))
+barplot(reg,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Registo do utilizador por idades")
+
+
+
+pn = c(mean(p_m_18_pesq_nome),
+       mean(p_18_25_pesq_nome),
+       mean(p_26_35_pesq_nome),
+       mean(p_36_45_pesq_nome),
+       mean(p_45_mais_pesq_nome))
+barplot(pn,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Pesquisa por nome por idades")
+
+
+
+
+a1 = c(mean(p_m_18_add_carr_1),
+       mean(p_18_25_add_carr_1),
+       mean(p_26_35_add_carr_1),
+       mean(p_36_45_add_carr_1),
+       mean(p_45_mais_add_carr_1))
+barplot(a1,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Adicionar ao carrinho de compras\n desde da pagina de detalhes do livro idades")
+
+
+pa = c(mean(p_m_18_pesq_autor),
+       mean(p_18_25_pesq_autor),
+       mean(p_26_35_pesq_autor),
+       mean(p_36_45_pesq_autor),
+       mean(p_45_mais_pesq_autor))
+barplot(pa,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Pesquisa por autor por idades")
+
+
+
+sel = c(mean(p_m_18_sel_livro),
+        mean(p_18_25_sel_livro),
+        mean(p_26_35_sel_livro),
+        mean(p_36_45_sel_livro),
+        mean(p_45_mais_sel_livro))
+barplot(sel,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Encontrar Livro do Autor selecionado por idades")
+
+
+
+
+af = c(mean(p_m_18_add_fav),
+       mean(p_18_25_add_fav),
+       mean(p_26_35_add_fav),
+       mean(p_36_45_add_fav),
+       mean(p_45_mais_add_fav))
+barplot(af,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Adicionar aos Favoritos por idades")
+
+
+
+
+
+acc = c(mean(p_m_18_acc_fav),
+        mean(p_18_25_acc_fav),
+        mean(p_26_35_acc_fav),
+        mean(p_36_45_acc_fav),
+        mean(p_45_mais_acc_fav))
+barplot(acc,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Aceder aos Favoritos idades")
+
+
+
+
+
+a2 = c(mean(p_m_18_add_carr_2),
+       mean(p_18_25_add_carr_2),
+       mean(p_26_35_add_carr_2),
+       mean(p_36_45_add_carr_2),
+       mean(p_45_mais_add_carr_2))
+barplot(a2,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Adicionar carrinho na pagina de favoritos por idades")
+
+
+
+
+rm = c(mean(p_m_18_rm_carr),
+       mean(p_18_25_rm_carr),
+       mean(p_26_35_rm_carr),
+       mean(p_36_45_rm_carr),
+       mean(p_45_mais_rm_carr))
+barplot(rm,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Remover Livro do Carrinho de Compras por idades")
+
+
+
+cp = c(mean(p_m_18_ini_cp),
+       mean(p_18_25_ini_cp),
+       mean(p_26_35_ini_cp),
+       mean(p_36_45_ini_cp),
+       mean(p_45_mais_ini_cp))
+barplot(cp,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Dificuldade Iniciar Compra por idades")
+
+
+
+
+
+
+
+
+
+
+# Geral medias de pontuacoes (barplot)
+barplot(media_pontuacoes_por_idades,
+        names = c(i_MENOR_18, i_18_25, i_26_35, i_36_45, i_MAIS_45),
+        ylim=c(0,5),
+        col = c("#DAF7A6", "#ecf7a6", "#FFC300", "#ff9750","#FF5733", "#C70039", "#900C3F"))
+title(main = "Médias de Pontuações de Tarefas por idade (Global)")
